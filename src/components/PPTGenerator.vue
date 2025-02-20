@@ -60,8 +60,12 @@ export default {
         pptUrl.value = result.url;
         // 保存到历史记录
         pptStore.addRecord(content.value, result.url);
-      } catch (err: any) {
-        error.value = err.message || '生成PPT时发生错误，请稍后重试';
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          error.value = err.message;
+        } else {
+          error.value = '生成PPT时发生错误，请稍后重试';
+        }
       } finally {
         isLoading.value = false;
       }

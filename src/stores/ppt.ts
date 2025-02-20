@@ -25,12 +25,12 @@ export const usePPTStore = defineStore('ppt', {
         content,
         url,
         createdAt: new Date().toISOString(),
-      };
-      this.history.unshift(record);
-      this.currentPPT = record;
+      }
+      this.history.unshift(record)
+      this.currentPPT = record
 
       if (this.history.length > 20) {
-        this.history = this.history.slice(0, 20);
+        this.history = this.history.slice(0, 20)
       }
     },
 
@@ -44,9 +44,5 @@ export const usePPTStore = defineStore('ppt', {
     },
   },
 
-  persist: {
-    key: 'ppt-history',
-    storage: window.localStorage,
-    paths: ['history', 'currentPPT'],
-  },
+  persist: true, // 启用持久化
 })
